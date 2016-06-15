@@ -19,6 +19,8 @@
 @property (nonatomic, strong) MIKMIDIConnectionManager *connectionManager;
 @property (nonatomic, strong) MIKMIDIDeviceManager *midiDeviceManager;
 
+@property (nonatomic, strong) NSMutableArray *outputDeviceList;
+
 @end
 
 void audio_callback(void * context, float * out, uint32_t count)
@@ -27,7 +29,7 @@ void audio_callback(void * context, float * out, uint32_t count)
     
     [mad.lock lock];
     
-    if (mad.mp)
+    if (mad.mp && mp_safe())
         mp_render(mad.mp, out, count);
     else
         memset(out, 0, count * sizeof(float) * 2);
@@ -47,11 +49,13 @@ void audio_callback(void * context, float * out, uint32_t count)
 		_connectionManager.automaticallySavesConfiguration = NO;
 		_midiDeviceManager = [MIKMIDIDeviceManager sharedDeviceManager];
         
+        [self initOutputList];
+        
         _lock = [[NSLock alloc] init];
         
         _cas = cas_create( audio_callback, (__bridge void *)self, 44100 );
 
-        _mp = mp_create(3);
+        _mp = mp_create(2);
         mp_set_rate(_mp, 44100);
         
         cas_start(_cas);
@@ -88,6 +92,45 @@ void audio_callback(void * context, float * out, uint32_t count)
         }
     }
     [_lock unlock];
+}
+
+#pragma mark - Outputs
+
+- (NSArray *)availableOutputs { return self.outputDeviceList; }
+
+- (void)setOutput:(NSDictionary *)output
+{
+    if (output != _output) {
+        [_lock lock];
+        if (_output) { mp_delete(_mp); _mp = 0; }
+        _output = output;
+        if (_output) {
+            _mp = mp_create( [[_output valueForKey:@"device"] intValue] );
+            if (_mp) {
+                mp_set_soundfont(_mp, [[_output valueForKey:@"soundfont"] UTF8String] );
+                mp_set_preset(_mp, [[_output valueForKey:@"preset"] intValue] );
+            }
+        }
+        [_lock unlock];
+    }
+}
+
+- (void)initOutputList
+{
+    _outputDeviceList = [[NSMutableArray alloc] init];
+    
+    [_outputDeviceList addObject:[NSDictionary dictionaryWithObjectsAndKeys: @"BASSMIDI", @"name", [NSNumber numberWithInt:0], @"device", @"", @"soundfont", [NSNumber numberWithInt:0], @"preset", nil]];
+    
+    [_outputDeviceList addObject:[NSDictionary dictionaryWithObjectsAndKeys: @"DLS Synthesizer", @"name", [NSNumber numberWithInt:1], @"device", @"", @"soundfont", [NSNumber numberWithInt:0], @"preset", nil]];
+
+    [_outputDeviceList addObject:[NSDictionary dictionaryWithObjectsAndKeys: @"DMX Generic", @"name", [NSNumber numberWithInt:2], @"device", @"", @"soundfont", [NSNumber numberWithInt:0], @"preset", nil]];
+    [_outputDeviceList addObject:[NSDictionary dictionaryWithObjectsAndKeys: @"DMX Doom 1", @"name", [NSNumber numberWithInt:2], @"device", @"", @"soundfont", [NSNumber numberWithInt:1], @"preset", nil]];
+    [_outputDeviceList addObject:[NSDictionary dictionaryWithObjectsAndKeys: @"DMX Doom 2", @"name", [NSNumber numberWithInt:2], @"device", @"", @"soundfont", [NSNumber numberWithInt:2], @"preset", nil]];
+    [_outputDeviceList addObject:[NSDictionary dictionaryWithObjectsAndKeys: @"DMX Raptor", @"name", [NSNumber numberWithInt:2], @"device", @"", @"soundfont", [NSNumber numberWithInt:3], @"preset", nil]];
+    [_outputDeviceList addObject:[NSDictionary dictionaryWithObjectsAndKeys: @"DMX Strife", @"name", [NSNumber numberWithInt:2], @"device", @"", @"soundfont", [NSNumber numberWithInt:4], @"preset", nil]];
+    [_outputDeviceList addObject:[NSDictionary dictionaryWithObjectsAndKeys: @"MSOPL", @"name", [NSNumber numberWithInt:2], @"device", @"", @"soundfont", [NSNumber numberWithInt:5], @"preset", nil]];
+
+    [_outputDeviceList addObject:[NSDictionary dictionaryWithObjectsAndKeys: @"Roland Sound Canvas", @"name", [NSNumber numberWithInt:3], @"device", @"", @"soundfont", [NSNumber numberWithInt:0], @"preset", nil]];
 }
 
 #pragma mark - Devices

@@ -16,6 +16,11 @@
 #import "MSPlayer.h"
 #import "SCPlayer.h"
 
+int mp_safe()
+{
+    return SCPlayer::g_safe();
+}
+
 void * mp_create(int driver)
 {
     void * handle = NULL;

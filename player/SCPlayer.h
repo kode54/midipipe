@@ -8,6 +8,8 @@
 class SCPlayer : public MIDIPlayer
 {
 public:
+    static int g_safe();
+    
 	// zero variables
 	SCPlayer();
 

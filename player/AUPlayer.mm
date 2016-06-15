@@ -34,22 +34,27 @@ AUPlayer::~AUPlayer()
 
 void AUPlayer::send_event(uint32_t b)
 {
-    unsigned char event[ 3 ];
-    event[ 0 ] = (unsigned char)b;
-    event[ 1 ] = (unsigned char)( b >> 8 );
-    event[ 2 ] = (unsigned char)( b >> 16 );
-    MusicDeviceMIDIEvent(samplerUnit, event[0], event[1], event[2], 0);
+    if ( samplerUnit )
+    {
+        unsigned char event[ 3 ];
+        event[ 0 ] = (unsigned char)b;
+        event[ 1 ] = (unsigned char)( b >> 8 );
+        event[ 2 ] = (unsigned char)( b >> 16 );
+        MusicDeviceMIDIEvent(samplerUnit, event[0], event[1], event[2], 0);
+    }
 }
 
 void AUPlayer::send_sysex(const uint8_t *e, size_t length)
 {
-    MusicDeviceSysEx(samplerUnit, e, (UInt32) length);
+    if ( samplerUnit )
+        MusicDeviceSysEx(samplerUnit, e, (UInt32) length);
 }
 
 void AUPlayer::render(float * out, unsigned long count)
 {
     float *ptrL, *ptrR;
     memset(out, 0, count * sizeof(float) * 2);
+    if ( !samplerUnit ) return;
     while (count)
     {
         UInt32 numberFrames = count > 512 ? 512 : (UInt32) count;

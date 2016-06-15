@@ -12,7 +12,31 @@
 static pthread_mutex_t g_lock = PTHREAD_MUTEX_INITIALIZER;
 static const unsigned int g_max_instances = 2;
 static std::vector<unsigned int> g_instances_open;
-static SCCore g_sampler[g_max_instances];
+
+static class SamplerContainer
+{
+    bool safe;
+    SCCore * _sampler;
+    
+public:
+    SamplerContainer()
+    {
+        _sampler = new SCCore[g_max_instances];
+        safe = true;
+    }
+    
+    ~SamplerContainer()
+    {
+        safe = false;
+        delete [] _sampler;
+    }
+    
+    int is_safe() const { return (int)safe; }
+    
+    SCCore& operator[] (int x) { return _sampler[x]; }
+} g_sampler;
+
+int SCPlayer::g_safe() { return g_sampler.is_safe(); }
 
 SCPlayer::SCPlayer() : MIDIPlayer(), initialized(false), mode(sc_default), sccore_path(0)
 {
@@ -183,18 +207,21 @@ void SCPlayer::set_sccore_path(const char *path)
 
 void SCPlayer::send_event(uint32_t b)
 {
+    if (!initialized) return;
     sampler->TG_ShortMidiIn(b, 0);
 }
 
 void SCPlayer::send_sysex(const uint8_t *data, size_t length)
 {
     (void)length;
+    if (!initialized) return;
     send_sysex(data);
 }
 
 void SCPlayer::render(float * out, unsigned long count)
 {
 	memset(out, 0, count * sizeof(float) * 2);
+    if (!initialized) return;
 	while (count)
 	{
 		float buffer[2][4096];

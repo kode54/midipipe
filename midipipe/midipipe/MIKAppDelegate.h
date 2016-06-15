@@ -24,6 +24,9 @@
 @property (nonatomic, readonly) NSArray *availableCommands;
 @property (weak) IBOutlet NSComboBox *commandComboBox;
 
+@property (nonatomic, strong, readonly) NSArray *availableOutputs;
+@property (nonatomic, strong) NSDictionary *output;
+
 @property (strong) NSLock *lock;
 @property (unsafe_unretained) void *cas;
 @property (unsafe_unretained) void *mp;

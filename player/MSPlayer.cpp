@@ -27,22 +27,23 @@ void MSPlayer::set_bank(unsigned int bank_id)
 
 void MSPlayer::set_preset(uint32_t p)
 {
-    if (p == 0)
+    if (p <= 4)
     {
         set_synth(0);
-        set_bank(0);
+        set_bank(p);
     }
-    else if (p >= 1 && p <= 5)
+    else if (p == 5)
     {
         set_synth(1);
-        set_bank(p - 1);
+        set_bank(0);
     }
     shutdown();
 }
 
 void MSPlayer::send_event(uint32_t b)
 {
-    synth->midi_write(b);
+    if (synth)
+        synth->midi_write(b);
 }
 
 void MSPlayer::send_sysex(const uint8_t *e, size_t length)
@@ -51,6 +52,11 @@ void MSPlayer::send_sysex(const uint8_t *e, size_t length)
 
 void MSPlayer::render(float * out, unsigned long count)
 {
+    if (!synth)
+    {
+        memset(out, 0, count * sizeof(float) * 2);
+        return;
+    }
     float const scaler = 1.0f / 32768.0f;
     short buffer[512];
     while (count)

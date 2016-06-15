@@ -211,25 +211,32 @@ BMPlayer::~BMPlayer()
 
 void BMPlayer::send_event(uint32_t b)
 {
-    unsigned char event[ 3 ];
-    event[ 0 ] = (unsigned char)b;
-    event[ 1 ] = (unsigned char)( b >> 8 );
-    event[ 2 ] = (unsigned char)( b >> 16 );
-    unsigned channel = b & 0x0F;
-    unsigned command = b & 0xF0;
-    unsigned event_length = ( command == 0xC0 || command == 0xD0 ) ? 2 : 3;
-    if ( bank_lsb_overridden && command == 0xB0 && event[ 1 ] == 0x20 ) return;
-    BASS_MIDI_StreamEvents( _stream, BASS_MIDI_EVENTS_RAW + 1 + channel, event, event_length );
+    if ( _stream )
+    {
+        unsigned char event[ 3 ];
+        event[ 0 ] = (unsigned char)b;
+        event[ 1 ] = (unsigned char)( b >> 8 );
+        event[ 2 ] = (unsigned char)( b >> 16 );
+        unsigned channel = b & 0x0F;
+        unsigned command = b & 0xF0;
+        unsigned event_length = ( command == 0xC0 || command == 0xD0 ) ? 2 : 3;
+        if ( bank_lsb_overridden && command == 0xB0 && event[ 1 ] == 0x20 ) return;
+        BASS_MIDI_StreamEvents( _stream, BASS_MIDI_EVENTS_RAW + 1 + channel, event, event_length );
+    }
 }
 
 void BMPlayer::send_sysex(const uint8_t *e, size_t length)
 {
-    BASS_MIDI_StreamEvents( _stream, BASS_MIDI_EVENTS_RAW, e, (unsigned int) length );
+    if ( _stream )
+        BASS_MIDI_StreamEvents( _stream, BASS_MIDI_EVENTS_RAW, e, (unsigned int) length );
 }
 
 void BMPlayer::render(float * out, unsigned long count)
 {
-    BASS_ChannelGetData( _stream, out, BASS_DATA_FLOAT | (uint32_t)(count * sizeof(float) * 2) );
+    if ( _stream )
+        BASS_ChannelGetData( _stream, out, BASS_DATA_FLOAT | (uint32_t)(count * sizeof(float) * 2) );
+    else
+        memset( out, 0, count * sizeof(float) * 2 );
 }
 
 void BMPlayer::set_soundfont( const char * in )

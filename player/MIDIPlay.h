@@ -14,6 +14,8 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
+    
+int mp_safe();
 
 void * mp_create(int driver);
 void mp_delete(void *mp);
