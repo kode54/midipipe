@@ -31,6 +31,14 @@
 		830C94731D11E06B000E404F /* i_oplmusic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 830C945D1D11E06B000E404F /* i_oplmusic.cpp */; };
 		830C94741D11E06B000E404F /* opl3midi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 830C94671D11E06B000E404F /* opl3midi.cpp */; };
 		830C94781D11E3E7000E404F /* audio_output.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 830C94761D11E3E7000E404F /* audio_output.cpp */; };
+		830C947B1D122175000E404F /* MIKMIDI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 830C94331D11E050000E404F /* MIKMIDI.framework */; };
+		830C947D1D12227C000E404F /* MIKMIDI.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 830C94331D11E050000E404F /* MIKMIDI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		830C947F1D122290000E404F /* libbass_mpc.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 830C943A1D11E05E000E404F /* libbass_mpc.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		830C94801D122290000E404F /* libbass.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 830C943B1D11E05E000E404F /* libbass.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		830C94811D122290000E404F /* libbassflac.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 830C943C1D11E05E000E404F /* libbassflac.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		830C94821D122290000E404F /* libbassmidi.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 830C943D1D11E05E000E404F /* libbassmidi.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		830C94831D122290000E404F /* libbassopus.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 830C943E1D11E05E000E404F /* libbassopus.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		830C94841D122290000E404F /* libbasswv.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 830C943F1D11E05E000E404F /* libbasswv.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,7 +63,42 @@
 			remoteGlobalIDString = 9D4DF13A1AAB57430065F004;
 			remoteInfo = "MIKMIDI Tests";
 		};
+		830C94791D122167000E404F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 830C942C1D11E050000E404F /* MIKMIDI.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9D74EEA417A7129300BEE89F;
+			remoteInfo = MIKMIDI;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		830C947C1D12226F000E404F /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				830C947D1D12227C000E404F /* MIKMIDI.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		830C947E1D122287000E404F /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 6;
+			files = (
+				830C947F1D122290000E404F /* libbass_mpc.dylib in CopyFiles */,
+				830C94801D122290000E404F /* libbass.dylib in CopyFiles */,
+				830C94811D122290000E404F /* libbassflac.dylib in CopyFiles */,
+				830C94821D122290000E404F /* libbassmidi.dylib in CopyFiles */,
+				830C94831D122290000E404F /* libbassopus.dylib in CopyFiles */,
+				830C94841D122290000E404F /* libbasswv.dylib in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		830C94061D11DFCC000E404F /* midipipe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = midipipe.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -116,6 +159,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				830C947B1D122175000E404F /* MIKMIDI.framework in Frameworks */,
 				830C94401D11E05E000E404F /* libbass_mpc.dylib in Frameworks */,
 				830C94411D11E05E000E404F /* libbass.dylib in Frameworks */,
 				830C94451D11E05E000E404F /* libbasswv.dylib in Frameworks */,
@@ -304,10 +348,13 @@
 				830C94021D11DFCC000E404F /* Sources */,
 				830C94031D11DFCC000E404F /* Frameworks */,
 				830C94041D11DFCC000E404F /* Resources */,
+				830C947C1D12226F000E404F /* CopyFiles */,
+				830C947E1D122287000E404F /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				830C947A1D122167000E404F /* PBXTargetDependency */,
 			);
 			name = midipipe;
 			productName = midipipe;
@@ -413,6 +460,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		830C947A1D122167000E404F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = MIKMIDI;
+			targetProxy = 830C94791D122167000E404F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		830C941B1D11E026000E404F /* Credits.rtf */ = {
@@ -531,6 +586,7 @@
 				HEADER_SEARCH_PATHS = "$(SRCROOT)/..";
 				INFOPLIST_FILE = midipipe/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/../3rdparty/BASS";
 				PRODUCT_BUNDLE_IDENTIFIER = net.kode54.midipipe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -544,6 +600,7 @@
 				HEADER_SEARCH_PATHS = "$(SRCROOT)/..";
 				INFOPLIST_FILE = midipipe/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/../3rdparty/BASS";
 				PRODUCT_BUNDLE_IDENTIFIER = net.kode54.midipipe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

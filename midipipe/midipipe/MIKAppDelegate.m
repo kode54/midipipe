@@ -109,6 +109,7 @@ void audio_callback(void * context, float * out, uint32_t count)
             if (_mp) {
                 mp_set_soundfont(_mp, [[_output valueForKey:@"soundfont"] UTF8String] );
                 mp_set_preset(_mp, [[_output valueForKey:@"preset"] intValue] );
+                mp_set_rate(_mp, 44100);
             }
         }
         [_lock unlock];
