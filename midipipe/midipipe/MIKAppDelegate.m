@@ -244,6 +244,7 @@ void audio_callback(void * context, float * out, uint32_t count)
 {
     window.titleVisibility = NSWindowTitleHidden;
     window.titlebarAppearsTransparent = YES;
+    window.movableByWindowBackground = YES;
 }
 
 @end

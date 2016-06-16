@@ -87,34 +87,22 @@
                         </items>
                     </menu>
                 </menuItem>
-                <menuItem title="Help" id="490">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                    <menu key="submenu" title="Help" systemMenu="help" id="491">
-                        <items>
-                            <menuItem title="MIDI Testbed Help" keyEquivalent="?" id="492">
-                                <connections>
-                                    <action selector="showHelp:" target="-1" id="493"/>
-                                </connections>
-                            </menuItem>
-                        </items>
-                    </menu>
-                </menuItem>
             </items>
         </menu>
         <window title="MIDI Pipe" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="371">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" unifiedTitleAndToolbar="YES" fullSizeContentView="YES"/>
             <windowCollectionBehavior key="collectionBehavior" fullScreenAuxiliary="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="335" y="390" width="250" height="88"/>
+            <rect key="contentRect" x="335" y="390" width="310" height="50"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1057"/>
-            <value key="minSize" type="size" width="250" height="88"/>
-            <value key="maxSize" type="size" width="10000" height="88"/>
+            <value key="minSize" type="size" width="250" height="50"/>
+            <value key="maxSize" type="size" width="10000" height="50"/>
             <visualEffectView key="contentView" wantsLayer="YES" appearanceType="vibrantDark" blendingMode="behindWindow" state="followsWindowActiveState" id="372">
-                <rect key="frame" x="0.0" y="0.0" width="250" height="88"/>
+                <rect key="frame" x="0.0" y="0.0" width="310" height="50"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
                     <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="zG3-Al-W7j">
-                        <rect key="frame" x="101" y="17" width="132" height="26"/>
+                        <rect key="frame" x="89" y="0.0" width="221" height="26"/>
                         <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="YhK-kS-GlD" id="ESE-JU-dN0">
                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="menu"/>
@@ -132,8 +120,24 @@
                             <binding destination="494" name="selectedObject" keyPath="output" previousBinding="55V-cG-eFD" id="0sI-1j-JD0"/>
                         </connections>
                     </popUpButton>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="PSa-Kh-pEj">
+                        <rect key="frame" x="6" y="7" width="79" height="17"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Synthesizer:" id="2Il-zz-P6t">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6Cq-Nd-m9s">
+                        <rect key="frame" x="61" y="31" width="70" height="17"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="MIDI Input:" id="YHD-en-tBQ">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
                     <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="565">
-                        <rect key="frame" x="101" y="44" width="132" height="26"/>
+                        <rect key="frame" x="135" y="24" width="175" height="26"/>
                         <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="568" id="566">
                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="menu"/>
@@ -151,37 +155,21 @@
                             <binding destination="494" name="selectedObject" keyPath="device" previousBinding="7FF-5F-GGD" id="bgN-bW-dhh"/>
                         </connections>
                     </popUpButton>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="PSa-Kh-pEj">
-                        <rect key="frame" x="18" y="23" width="79" height="17"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Synthesizer:" id="2Il-zz-P6t">
-                            <font key="font" metaFont="system"/>
-                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6Cq-Nd-m9s">
-                        <rect key="frame" x="27" y="48" width="70" height="17"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="MIDI Input:" id="YHD-en-tBQ">
-                            <font key="font" metaFont="system"/>
-                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="565" firstAttribute="trailing" secondItem="zG3-Al-W7j" secondAttribute="trailing" id="1Qk-7z-bhV"/>
-                    <constraint firstAttribute="bottom" secondItem="zG3-Al-W7j" secondAttribute="bottom" constant="20" symbolic="YES" id="1qu-87-1J6"/>
-                    <constraint firstItem="zG3-Al-W7j" firstAttribute="leading" secondItem="PSa-Kh-pEj" secondAttribute="trailing" constant="8" symbolic="YES" id="2Xx-Fe-kiY"/>
-                    <constraint firstItem="565" firstAttribute="leading" secondItem="zG3-Al-W7j" secondAttribute="leading" id="70G-y2-XnK"/>
-                    <constraint firstItem="565" firstAttribute="leading" secondItem="6Cq-Nd-m9s" secondAttribute="trailing" constant="8" symbolic="YES" id="CUg-MH-rOf"/>
-                    <constraint firstItem="PSa-Kh-pEj" firstAttribute="top" secondItem="6Cq-Nd-m9s" secondAttribute="bottom" constant="8" symbolic="YES" id="Etj-we-X1u"/>
-                    <constraint firstItem="PSa-Kh-pEj" firstAttribute="baseline" secondItem="zG3-Al-W7j" secondAttribute="baseline" id="QCM-F2-HOU"/>
-                    <constraint firstAttribute="trailing" secondItem="565" secondAttribute="trailing" constant="20" symbolic="YES" id="Xv3-T2-H2E"/>
-                    <constraint firstItem="565" firstAttribute="top" secondItem="372" secondAttribute="top" constant="20" symbolic="YES" id="bAI-WA-5Lb"/>
-                    <constraint firstItem="PSa-Kh-pEj" firstAttribute="leading" secondItem="372" secondAttribute="leading" constant="20" symbolic="YES" id="tlS-X7-OUv"/>
+                    <constraint firstAttribute="trailing" secondItem="565" secondAttribute="trailing" constant="3" id="3aq-uY-7Lh"/>
+                    <constraint firstItem="565" firstAttribute="leading" secondItem="6Cq-Nd-m9s" secondAttribute="trailing" constant="8" symbolic="YES" id="HPO-Da-Tbl"/>
+                    <constraint firstItem="6Cq-Nd-m9s" firstAttribute="top" secondItem="565" secondAttribute="top" id="IdR-e5-j6A"/>
+                    <constraint firstItem="PSa-Kh-pEj" firstAttribute="top" secondItem="zG3-Al-W7j" secondAttribute="top" id="SK1-I3-wei"/>
+                    <constraint firstItem="zG3-Al-W7j" firstAttribute="top" secondItem="565" secondAttribute="bottom" constant="3" id="UwC-gi-WZC"/>
+                    <constraint firstItem="zG3-Al-W7j" firstAttribute="leading" secondItem="PSa-Kh-pEj" secondAttribute="trailing" constant="8" symbolic="YES" id="VUy-nz-Z61"/>
+                    <constraint firstItem="6Cq-Nd-m9s" firstAttribute="leading" secondItem="372" secondAttribute="leading" constant="63" id="Wdg-Hv-s2q"/>
+                    <constraint firstItem="PSa-Kh-pEj" firstAttribute="leading" secondItem="372" secondAttribute="leading" constant="8" id="XUG-La-Yec"/>
+                    <constraint firstItem="6Cq-Nd-m9s" firstAttribute="top" secondItem="372" secondAttribute="top" constant="2" id="aXC-pW-MZr"/>
+                    <constraint firstItem="565" firstAttribute="trailing" secondItem="zG3-Al-W7j" secondAttribute="trailing" id="pim-SJ-DIt"/>
                 </constraints>
             </visualEffectView>
-            <point key="canvasLocation" x="181" y="150"/>
+            <point key="canvasLocation" x="157" y="268.5"/>
         </window>
         <customObject id="494" customClass="MIKAppDelegate">
             <connections>
