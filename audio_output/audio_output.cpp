@@ -1,12 +1,12 @@
 #include "audio_output.h"
 
-static const uint32_t DEFAULT_CHUNK_MS = 40;
+static const uint32_t DEFAULT_CHUNK_MS = 20;
 
 CoreAudioStream::CoreAudioStream(callback useCb, void * userData, const uint32_t useSampleRate) :
 	playerCallback(useCb), playerCallbackUserData(userData),
     sampleRate(useSampleRate), audioQueue(NULL)
 {
-	const uint32_t bufferSize = 256;
+	const uint32_t bufferSize = 128;
     const uint32_t audioLatencyFrames = sampleRate * DEFAULT_CHUNK_MS / 1000;
 	bufferByteSize = bufferSize << 3;
 	// Number of buffers should be ceil(audioLatencyFrames / bufferSize)
