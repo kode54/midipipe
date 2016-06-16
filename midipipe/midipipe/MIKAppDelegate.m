@@ -37,7 +37,11 @@ void audio_callback(void * context, float * out, uint32_t count)
     [mad.lock unlock];
 }
 
+
+
+
 @implementation MIKAppDelegate
+
 
 - (id)init
 {
@@ -58,7 +62,10 @@ void audio_callback(void * context, float * out, uint32_t count)
         _mp = mp_create(2);
         mp_set_rate(_mp, 44100);
         
+        
         cas_start(_cas);
+        
+        
     }
     return self;
 }
@@ -224,6 +231,19 @@ void audio_callback(void * context, float * out, uint32_t count)
 - (MIKMIDIAutoConnectBehavior)connectionManager:(MIKMIDIConnectionManager *)manager shouldConnectToNewlyAddedDevice:(MIKMIDIDevice *)device
 {
 	return MIKMIDIAutoConnectBehaviorDoNotConnect;
+}
+
+@synthesize window;
+
+
+- (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)theApplication {
+    return YES;
+}
+
+- (void)applicationDidFinishLaunching:(NSNotification *)aNotification
+{
+    window.titleVisibility = NSWindowTitleHidden;
+    window.titlebarAppearsTransparent = YES;
 }
 
 @end

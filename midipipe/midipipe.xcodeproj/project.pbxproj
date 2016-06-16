@@ -581,7 +581,6 @@
 		830C94181D11DFCC000E404F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
 				HEADER_SEARCH_PATHS = "$(SRCROOT)/..";
 				INFOPLIST_FILE = midipipe/Info.plist;
@@ -595,7 +594,6 @@
 		830C94191D11DFCC000E404F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
 				HEADER_SEARCH_PATHS = "$(SRCROOT)/..";
 				INFOPLIST_FILE = midipipe/Info.plist;
@@ -625,6 +623,7 @@
 				830C94191D11DFCC000E404F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
