@@ -145,7 +145,7 @@ void AUPlayer::setComponent(OSType uSubType, OSType uManufacturer)
 void AUPlayer::set_soundfont( const char * in )
 {
     const char * ext = strrchr(in, '.');
-    if (*ext && ((strncasecmp(ext + 1, "sf2", 3) == 0) || (strncasecmp(ext + 1, "dls", 3) == 0)))
+    if (ext && *ext && ((strncasecmp(ext + 1, "sf2", 3) == 0) || (strncasecmp(ext + 1, "dls", 3) == 0)))
     {
         sSoundFontName = new char[strlen(in) + 1];
         strcpy(sSoundFontName, in);

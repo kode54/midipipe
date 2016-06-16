@@ -1,6 +1,6 @@
 #include "audio_output.h"
 
-static const uint32_t DEFAULT_CHUNK_MS = 40;
+static const uint32_t DEFAULT_CHUNK_MS = 20;
 
 CoreAudioStream::CoreAudioStream(callback useCb, void * userData, const uint32_t useSampleRate) :
 	playerCallback(useCb), playerCallbackUserData(userData),
